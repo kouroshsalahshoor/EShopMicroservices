@@ -1,12 +1,12 @@
 var builder = WebApplication.CreateBuilder(args);
 
-builder.Services.AddCarter();
-
 var assembly = typeof(Program).Assembly;
 builder.Services.AddMediatR(config =>
 {
     config.RegisterServicesFromAssembly(assembly);
 });
+
+builder.Services.AddCarter();
 
 builder.Services.AddMarten(opts =>
 {
