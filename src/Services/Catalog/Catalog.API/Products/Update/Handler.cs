@@ -4,6 +4,17 @@ public record Command(Guid Id, string Name, List<string> Category, string Descri
     : ICommand<Result>;
 public record Result(bool IsSuccess);
 
+public class Validator : AbstractValidator<Command>
+{
+    public Validator()
+    {
+        RuleFor(x => x.Id).NotEmpty().WithMessage("Id is required");
+        RuleFor(x => x.Name)
+            .NotEmpty().WithMessage("Name is required")
+            .Length(2, 150).WithMessage("Name must be between 2 and 150 characters");
+        RuleFor(x => x.Price).GreaterThan(0).WithMessage("Price must be greater than 0");
+    }
+}
 internal class Handler(IDocumentSession session, ILogger<Handler> logger) : ICommandHandler<Command, Result>
 {
     public async Task<Result> Handle(Command command, CancellationToken cancellationToken)

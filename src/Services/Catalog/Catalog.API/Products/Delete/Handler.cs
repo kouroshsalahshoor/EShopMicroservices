@@ -3,6 +3,14 @@
 public record Command(Guid Id) : ICommand<Result>;
 public record Result(bool IsSuccess);
 
+public class Validator : AbstractValidator<Command>
+{
+    public Validator()
+    {
+        RuleFor(x => x.Id).NotEmpty().WithMessage("Id is required");
+    }
+}
+
 internal class Handler(IDocumentSession session, ILogger<Handler> logger) : ICommandHandler<Command, Result>
 {
     public async Task<Result> Handle(Command command, CancellationToken cancellationToken)
