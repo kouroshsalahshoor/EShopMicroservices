@@ -1,0 +1,283 @@
+{
+  "info": {
+    "_postman_id": "33688a81-9b67-4308-b787-9ab8f3e2626d",
+    "name": "EShopMicroservices",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "_exporter_id": "44811434"
+  },
+  "item": [
+    {
+      "name": "Catalog",
+      "item": [
+        {
+          "name": "Get",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{catalog_url}}/products",
+              "host": [
+                "{{catalog_url}}"
+              ],
+              "path": [
+                "products"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Get Paging",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{catalog_url}}/products?pageNumber=1&pageSize=5",
+              "host": [
+                "{{catalog_url}}"
+              ],
+              "path": [
+                "products"
+              ],
+              "query": [
+                {
+                  "key": "pageNumber",
+                  "value": "1"
+                },
+                {
+                  "key": "pageSize",
+                  "value": "5"
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Post",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"Name\" : \"Name\",\r\n    \"Category\" : [\"Category 1\", \"Category 2\"],\r\n    \"Description\" : \"Description\",\r\n    \"ImageFile\" : \"ImageFile\",\r\n    \"Price\" : 11\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{catalog_url}}/products",
+              "host": [
+                "{{catalog_url}}"
+              ],
+              "path": [
+                "products"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Post invalid",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"Name\" : \"\",\r\n    \"Category\" : [],\r\n    \"Description\" : \"\",\r\n    \"ImageFile\" : \"\",\r\n    \"Price\" : -11\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{catalog_url}}/products",
+              "host": [
+                "{{catalog_url}}"
+              ],
+              "path": [
+                "products"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Put",
+          "request": {
+            "method": "PUT",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"Id\" : \"\",\r\n    \"Name\" : \"Name updated\",\r\n    \"Category\" : [\"Category 1\", \"Category 2\"],\r\n    \"Description\" : \"Description updated\",\r\n    \"ImageFile\" : \"ImageFile updated\",\r\n    \"Price\" : 111\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{catalog_url}}/products",
+              "host": [
+                "{{catalog_url}}"
+              ],
+              "path": [
+                "products"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Put invalid",
+          "request": {
+            "method": "PUT",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"Id\" : \"\",\r\n    \"Name\" : \"\",\r\n    \"Category\" : [],\r\n    \"Description\" : \"\",\r\n    \"ImageFile\" : \"\",\r\n    \"Price\" : -111\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{catalog_url}}/products",
+              "host": [
+                "{{catalog_url}}"
+              ],
+              "path": [
+                "products"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Get by Id",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{catalog_url}}/products/01a0f1d5-caf8-74ad-8df1-7cc115175362",
+              "host": [
+                "{{catalog_url}}"
+              ],
+              "path": [
+                "products",
+                "01a0f1d5-caf8-74ad-8df1-7cc115175362"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Delete",
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "url": {
+              "raw": "{{catalog_url}}/products/01a0f1d5-caf8-74ad-8df1-7cc115175362",
+              "host": [
+                "{{catalog_url}}"
+              ],
+              "path": [
+                "products",
+                "01a0f1d5-caf8-74ad-8df1-7cc115175362"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Delete invalid",
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "url": {
+              "raw": "{{catalog_url}}/products/",
+              "host": [
+                "{{catalog_url}}"
+              ],
+              "path": [
+                "products",
+                ""
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Get by Category",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{catalog_url}}/products/category/2",
+              "host": [
+                "{{catalog_url}}"
+              ],
+              "path": [
+                "products",
+                "category",
+                "2"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "health",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "url": {
+              "raw": "{{catalog_url}}/health",
+              "host": [
+                "{{catalog_url}}"
+              ],
+              "path": [
+                "health"
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Basket",
+      "item": []
+    },
+    {
+      "name": "Discount",
+      "item": []
+    },
+    {
+      "name": "Order",
+      "item": []
+    }
+  ]
+}
