@@ -15,17 +15,21 @@ public class Validator : AbstractValidator<Command>
         RuleFor(x => x.Price).GreaterThan(0).WithMessage("Price must be greater than 0");
     }
 }
-internal class Handler(IDocumentSession session, ILogger<Handler> logger) : ICommandHandler<Command, Result>
+internal class Handler(
+    IDocumentSession session 
+    //ILogger<Handler> logger
+    ) 
+    : ICommandHandler<Command, Result>
 {
     public async Task<Result> Handle(Command command, CancellationToken cancellationToken)
     {
-        logger.LogInformation("Products Update Handler called with {@command}", command);
+        //logger.LogInformation("Products Update Handler called with {@command}", command);
 
         var entity = await session.LoadAsync<Product>(command.Id, cancellationToken);
 
         if (entity is null)
         {
-            logger.LogWarning("Product with Id {Id} not found", command.Id);
+            //logger.LogWarning("Product with Id {Id} not found", command.Id);
             throw new ProductNotFoundException(command.Id);
             //return new Result(false);
         }

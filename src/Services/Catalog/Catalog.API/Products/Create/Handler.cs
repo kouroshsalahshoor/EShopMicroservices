@@ -18,15 +18,15 @@ public class Validator : AbstractValidator<Command>
     }
 }
 internal class Handler(
-    IDocumentSession session,
-    ILogger<Handler> logger
+    IDocumentSession session
+//    ILogger<Handler> logger
     ) : ICommandHandler<Command, Result>
 {
     public async Task<Result> Handle(Command command, CancellationToken cancellationToken)
     {
-        logger.LogInformation("Creating product with name: {Name}, category: {Category}, description: {Description}, imageFile: {ImageFile}, price: {Price}",
-            command.Name, string.Join(", ", command.Category), command.Description, command.ImageFile, command.Price);
-        logger.LogInformation("Create Product Command: {@Command}", command);
+        //logger.LogInformation("Creating product with name: {Name}, category: {Category}, description: {Description}, imageFile: {ImageFile}, price: {Price}",
+        //    command.Name, string.Join(", ", command.Category), command.Description, command.ImageFile, command.Price);
+        //logger.LogInformation("Create Product Command: {@Command}", command);
 
         // create entity from command object
         var entity = new Product
