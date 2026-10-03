@@ -26,7 +26,7 @@ internal class Handler(IDocumentSession session, ILogger<Handler> logger) : ICom
         if (entity is null)
         {
             logger.LogWarning("Product with Id {Id} not found", command.Id);
-            throw new NotFoundException();
+            throw new ProductNotFoundException(command.Id);
             //return new Result(false);
         }
 

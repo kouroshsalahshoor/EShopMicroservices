@@ -13,7 +13,7 @@ internal class Handler(IDocumentSession session, ILogger<Handler> logger) : IQue
         var item = await session.LoadAsync<Product>(query.Id, cancellationToken);
 
         if (item is null)
-            throw new NotFoundException();
+            throw new ProductNotFoundException(query.Id);
 
         return new Result(item);
     }
