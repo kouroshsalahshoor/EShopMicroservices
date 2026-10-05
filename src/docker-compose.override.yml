@@ -9,11 +9,26 @@ services:
     shm_size: 128mb
     ports:
       - "5432:5432"
-  # adminer:
-  #   image: adminer
-  #   restart: always
-  #   ports:
-  #     - 8080:8080
+    #volumes:
+    #  - postgres_catalog:/var/lib/postgresql/data/
+  adminer:
+    image: adminer
+    restart: always
+    ports:
+      - 8080:8080
+
+  basketdb:
+    container_name: basketdb
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
+      - POSTGRES_DB=BasketDb
+    restart: always
+    shm_size: 128mb
+    ports:
+      - "5433:5432"
+    #volumes:
+    #  - postgres_basket:/var/lib/postgresql/data/ 
 
   catalog.api:
     environment:
