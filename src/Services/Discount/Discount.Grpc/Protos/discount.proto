@@ -7,13 +7,23 @@ package discount;
 // The discount service definition.
 service DiscountProtoService {
 	// Discount CRUD Operations
-	rpc Get (GetRequest) returns (CouponModel);
+	rpc Get (GetRequest) returns (GetResponse);
+	rpc GetById (GetByIdRequest) returns (CouponModel);
+	rpc GetByName (GetByNameRequest) returns (CouponModel);
 	rpc Create (CreateRequest) returns (CouponModel);
 	rpc Update (UpdateRequest) returns (CouponModel);
 	rpc Delete (DeleteRequest) returns (DeleteResponse);
 }
 
 message GetRequest {
+}
+message GetResponse {
+    repeated CouponModel coupons = 1;
+}
+message GetByIdRequest {
+	int32 id = 1;
+}
+message GetByNameRequest {
 	string productName = 1;
 }
 

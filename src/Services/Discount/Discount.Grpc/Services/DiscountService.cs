@@ -9,7 +9,40 @@ namespace Discount.Grpc.Services;
 public class DiscountService(ApplicationDbContext db, ILogger<DiscountService> logger) 
     : DiscountProtoService.DiscountProtoServiceBase
 {
-    public override async Task<CouponModel> Get(GetRequest request, ServerCallContext context)
+    public override async Task<GetResponse> Get(GetRequest request, ServerCallContext context)
+    {
+        var models = await db.Coupons.ToListAsync();
+
+        logger.LogInformation("Discounts retrieved");
+
+        var response = new GetResponse();
+
+        response.Coupons.AddRange(models.Select(c => new CouponModel
+        {
+            Id = c.Id,
+            ProductName = c.ProductName,
+            Description = c.Description,
+            Amount = c.Amount
+        }));
+
+        return response;
+    }
+    public override async Task<CouponModel> GetById(GetByIdRequest request, ServerCallContext context)
+    {
+        var model = await db
+            .Coupons
+            .FirstOrDefaultAsync(c => c.Id == request.Id);
+
+        if (model is null)
+            model = new Coupon { ProductName = "No Discount", Amount = 0, Description = "No Discount Desc" };
+
+        logger.LogInformation("Discount is retrieved for ProductId : {productId}, ProductName : {productName}, Amount : {amount}",
+            model.Id, model.ProductName, model.Amount);
+
+        var couponModel = model.Adapt<CouponModel>();
+        return couponModel;
+    }
+    public override async Task<CouponModel> GetByName(GetByNameRequest request, ServerCallContext context)
     {
         var model = await db
             .Coupons
@@ -18,7 +51,7 @@ public class DiscountService(ApplicationDbContext db, ILogger<DiscountService> l
         if (model is null)
             model = new Coupon { ProductName = "No Discount", Amount = 0, Description = "No Discount Desc" };
 
-        logger.LogInformation("Discount is retrieved for ProductName : {productName}, Amount : {amount}", 
+        logger.LogInformation("Discount is retrieved for ProductName : {productName}, Amount : {amount}",
             model.ProductName, model.Amount);
 
         var couponModel = model.Adapt<CouponModel>();
