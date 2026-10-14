@@ -1,7 +1,6 @@
 ﻿namespace Ordering.Application.Orders.Commands.Delete;
 
-public class DeleteOrderHandler(IApplicationDbContext dbContext)
-    : ICommandHandler<Command, Result>
+public class DeleteOrderHandler(IApplicationDbContext dbContext) : ICommandHandler<Command, Result>
 {
     public async Task<Result> Handle(Command command, CancellationToken cancellationToken)
     {
