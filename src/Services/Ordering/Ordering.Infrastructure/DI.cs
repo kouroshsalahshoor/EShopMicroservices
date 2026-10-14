@@ -11,6 +11,7 @@ public static class DI
 
         services.AddDbContext<ApplicationDbContext>((sp, options) =>
         {
+            options.AddInterceptors(new AuditableEntityInterceptor());
             options.UseSqlServer(cs);
         });
 
