@@ -1,10 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
+﻿namespace Ordering.Application.Orders.Queries.GetByCustomer;
 
-namespace Ordering.Application.Orders.Queries.GetByCustomer
-{
-    internal class Query
-    {
-    }
-}
+public record Query(Guid CustomerId) : IQuery<Result>;
+
+public record Result(IEnumerable<OrderDto> Orders);
