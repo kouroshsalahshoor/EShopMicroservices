@@ -9,9 +9,7 @@ public class DeleteOrderHandler(IApplicationDbContext dbContext) : ICommandHandl
             .FindAsync([orderId], cancellationToken: cancellationToken);
 
         if (order is null)
-        {
             throw new OrderNotFoundException(command.OrderId);
-        }
 
         dbContext.Orders.Remove(order);
         await dbContext.SaveChangesAsync(cancellationToken);
