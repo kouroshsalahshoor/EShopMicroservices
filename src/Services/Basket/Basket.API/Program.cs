@@ -1,5 +1,6 @@
 
 using Discount.Grpc;
+using BuildingBlocks.Messaging.MassTransit;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -50,6 +51,9 @@ builder.Services.AddExceptionHandler<CustomExceptionHandler>();
 builder.Services.AddHealthChecks()
     .AddNpgSql(builder.Configuration.GetConnectionString("Database")!)
     .AddRedis(builder.Configuration.GetConnectionString("Redis")!);
+
+//Async Communication Services - publisher
+builder.Services.AddMessageBroker(builder.Configuration);
 
 var app = builder.Build();
 
