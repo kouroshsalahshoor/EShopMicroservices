@@ -295,7 +295,7 @@
             "header": [],
             "body": {
               "mode": "raw",
-              "raw": "{\r\n    \"Cart\":\r\n    {\r\n        \"UserName\":\"username\",\r\n        \"Items\":[\r\n            {\r\n                \"Quantity\":1,\r\n                \"Color\":\"Red\",\r\n                \"Price\": 100,\r\n                \"ProductId\":\"82735d7d-dc66-4a10-982d-50e020c0cb66\",\r\n                \"ProductName\":\"Product 1\"\r\n            },\r\n            {\r\n                \"Quantity\":2,\r\n                \"Color\":\"Green\",\r\n                \"Price\": 200,\r\n                \"ProductId\":\"363f6f5a-c750-4117-b68c-0e7eb4553482\",\r\n                \"ProductName\":\"Product 2\"\r\n            }\r\n        ]\r\n    }\r\n}",
+              "raw": "{\r\n    \"Cart\":\r\n    {\r\n        \"UserName\":\"username\",\r\n        \"Items\":[\r\n            {\r\n                \"Quantity\":1,\r\n                \"Color\":\"Red\",\r\n                \"Price\": 500,\r\n                \"ProductId\":\"82735d7d-dc66-4a10-982d-50e020c0cb66\",\r\n                \"ProductName\":\"Product 1\"\r\n            },\r\n            {\r\n                \"Quantity\":2,\r\n                \"Color\":\"Green\",\r\n                \"Price\": 500,\r\n                \"ProductId\":\"363f6f5a-c750-4117-b68c-0e7eb4553482\",\r\n                \"ProductName\":\"Product 2\"\r\n            }\r\n        ]\r\n    }\r\n}",
               "options": {
                 "raw": {
                   "language": "json"
@@ -357,7 +357,142 @@
     },
     {
       "name": "Order",
-      "item": []
+      "item": [
+        {
+          "name": "post",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"order\": {\r\n                \"customerId\": \"58c49479-ec65-4de2-86e7-033c546291aa\",\r\n                \"orderName\": \"ORD_4\",\r\n                \"shippingAddress\": {\r\n                    \"firstName\": \"xxx\",\r\n                    \"lastName\": \"xxx\",\r\n                    \"emailAddress\": \"xxx@gmail.com\",\r\n                    \"addressLine\": \"Bahcelievler No:4\",\r\n                    \"country\": \"Turkey\",\r\n                    \"state\": \"Istanbul\",\r\n                    \"zipCode\": \"38050\"\r\n                },\r\n                \"billingAddress\": {\r\n                    \"firstName\": \"mehmet\",\r\n                    \"lastName\": \"ozkaya\",\r\n                    \"emailAddress\": \"mehmet@gmail.com\",\r\n                    \"addressLine\": \"Bahcelievler No:4\",\r\n                    \"country\": \"Turkey\",\r\n                    \"state\": \"Istanbul\",\r\n                    \"zipCode\": \"38050\"\r\n                },\r\n                \"payment\": {\r\n                    \"cardName\": \"mehmet\",\r\n                    \"cardNumber\": \"5555555555554444\",\r\n                    \"expiration\": \"12/28\",\r\n                    \"cvv\": \"355\",\r\n                    \"paymentMethod\": 1\r\n                },\r\n                \"status\": 2,\r\n                \"orderItems\": [\r\n                    {\r\n                        \"productId\": \"c67d6323-e8b1-4bdf-9a75-b0d0d2e7e914\",\r\n                        \"quantity\": 1,\r\n                        \"price\": 400.00\r\n                    },\r\n                    {\r\n                        \"productId\": \"5334c996-8457-4cf0-815c-ed2b77c4ff61\",\r\n                        \"quantity\": 2,\r\n                        \"price\": 500.00\r\n                    }\r\n                ]\r\n            }\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{order_url}}/orders",
+              "host": [
+                "{{order_url}}"
+              ],
+              "path": [
+                "orders"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "get with paging",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{order_url}}/orders?PageIndex=1&PageSize=2",
+              "host": [
+                "{{order_url}}"
+              ],
+              "path": [
+                "orders"
+              ],
+              "query": [
+                {
+                  "key": "PageIndex",
+                  "value": "1"
+                },
+                {
+                  "key": "PageSize",
+                  "value": "2"
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "update",
+          "request": {
+            "method": "PUT",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"order\": {\r\n                \"id\": \"abcf592f-869f-438a-992a-6de6d4efe4cd\",\r\n                \"customerId\": \"58c49479-ec65-4de2-86e7-033c546291aa\",\r\n                \"orderName\": \"ORD_5\",\r\n                \"shippingAddress\": {\r\n                    \"firstName\": \"xxx\",\r\n                    \"lastName\": \"xxx\",\r\n                    \"emailAddress\": \"xxx@gmail.com\",\r\n                    \"addressLine\": \"xxx\",\r\n                    \"country\": \"xxx\",\r\n                    \"state\": \"xxx\",\r\n                    \"zipCode\": \"xxx\"\r\n                },\r\n                \"billingAddress\": {\r\n                    \"firstName\": \"xxx\",\r\n                    \"lastName\": \"xxx\",\r\n                    \"emailAddress\": \"xxx@gmail.com\",\r\n                    \"addressLine\": \"xxx\",\r\n                    \"country\": \"xxx\",\r\n                    \"state\": \"xxx\",\r\n                    \"zipCode\": \"xxx\"\r\n                },\r\n                \"payment\": {\r\n                    \"cardName\": \"xxx\",\r\n                    \"cardNumber\": \"5555555555554444\",\r\n                    \"expiration\": \"12/28\",\r\n                    \"cvv\": \"355\",\r\n                    \"paymentMethod\": 1\r\n                },\r\n                \"status\": 2,\r\n                \"orderItems\": [\r\n                    {\r\n                        \"productId\": \"c67d6323-e8b1-4bdf-9a75-b0d0d2e7e914\",\r\n                        \"quantity\": 1,\r\n                        \"price\": 100.00\r\n                    },\r\n                    {\r\n                        \"productId\": \"5334c996-8457-4cf0-815c-ed2b77c4ff61\",\r\n                        \"quantity\": 2,\r\n                        \"price\": 200.00\r\n                    }\r\n                ]\r\n            }\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{order_url}}/orders",
+              "host": [
+                "{{order_url}}"
+              ],
+              "path": [
+                "orders"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "get by name",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{order_url}}/orders/ORD_1",
+              "host": [
+                "{{order_url}}"
+              ],
+              "path": [
+                "orders",
+                "ORD_1"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "get by customer",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{order_url}}/orders/customer/189dc8dc-990f-48e0-a37b-e6f2b60b9d7d",
+              "host": [
+                "{{order_url}}"
+              ],
+              "path": [
+                "orders",
+                "customer",
+                "189dc8dc-990f-48e0-a37b-e6f2b60b9d7d"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "delete",
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "url": {
+              "raw": "{{order_url}}/orders/abcf592f-869f-438a-992a-6de6d4efe4cd",
+              "host": [
+                "{{order_url}}"
+              ],
+              "path": [
+                "orders",
+                "abcf592f-869f-438a-992a-6de6d4efe4cd"
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
     }
   ]
 }
